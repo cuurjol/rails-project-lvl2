@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | RailsProjectLvl2
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+
+  body.d-flex.flex-column.h-100
+    header
+      = render 'layouts/shared/nav'
+
+    main
+      .container.my-4
+        = render 'layouts/shared/flash'
+        == yield

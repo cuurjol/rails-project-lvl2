@@ -5,6 +5,7 @@
 
 import * as bootstrap from 'bootstrap'
 import "../stylesheets/application.scss"
+require.context("../images", true)
 import Rails from "@rails/ujs"
 
 Rails.start()
