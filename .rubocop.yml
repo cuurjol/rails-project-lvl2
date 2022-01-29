@@ -5,3 +5,11 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/initializers/simple_form_bootstrap.rb
