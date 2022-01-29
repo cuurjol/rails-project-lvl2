@@ -5,7 +5,7 @@
 
 import * as bootstrap from 'bootstrap'
 import "../stylesheets/application.scss"
-require.context("../images", true)
+import "@fortawesome/fontawesome-free/css/all"
 import Rails from "@rails/ujs"
 
 Rails.start()

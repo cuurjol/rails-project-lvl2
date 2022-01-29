@@ -1,0 +1,21 @@
+.card.mb-4
+  .card-header
+    .d-flex
+      span.card-text.me-auto = "##{post_counter + 1}"
+      span.card-text.text-muted = "Author: #{post.creator.email}"
+
+  .card-body
+    h4.card-text = post.title
+    p.card-text = reduce_text(post.body)
+
+  .card-footer.text-muted
+    .d-flex
+      - if user_signed_in?
+        = link_to('Show', post_path(post), class: 'card-link btn btn-success')
+        = link_to('Destroy', post_path(post), method: :delete, class: 'card-link  btn btn-danger me-auto',
+                data: { confirm: 'Are you sure?' })
+      - else
+        = link_to('Show', post_path(post), class: 'card-link btn btn-success me-auto')
+
+      .pt-2
+        p.card-text = "Created_at: #{post.created_at.to_formatted_s(:long)}"

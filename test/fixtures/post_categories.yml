@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+health:
+  name: Health
+
+nature:
+  name: Nature
+
+education:
+  name: Education
+
+science:
+  name: Science
+
+travel:
+  name: Travel

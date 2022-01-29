@@ -10,11 +10,9 @@ html
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
 
-  body.d-flex.flex-column.h-100
-    header
-      = render 'layouts/shared/nav'
+  body
+    = render('layouts/shared/nav')
+    = render('layouts/shared/flash')
 
-    main
-      .container.my-4
-        = render 'layouts/shared/flash'
-        == yield
+    .container.my-4
+      == yield

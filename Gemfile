@@ -20,6 +20,7 @@ gem 'devise'
 gem 'rollbar'
 gem 'rubocop', '~> 1.23', require: false
 gem 'rubocop-rails', require: false
+gem 'simple_form'
 gem 'slim_lint'
 gem 'slim-rails'
 

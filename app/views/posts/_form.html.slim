@@ -1,0 +1,6 @@
+= simple_form_for(@post) do |f|
+  = f.input :title, wrapper_html: { class: 'my-2' }
+  = f.input :body, wrapper_html: { class: 'my-2' }
+  = f.association :post_category, wrapper_html: { class: 'my-2' }
+  = f.button :submit, class: 'btn-success my-2 btn-block'
+  = link_to('Cancel', posts_path, class: 'btn btn-secondary my-2 ms-2')

@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+health:
+  title: Health test title
+  body: Health test body
+  post_category: health
+  creator: one
+
+nature:
+  title: Nature test title
+  body: Nature test body
+  post_category: nature
+  creator: one
+
+education:
+  title: Education test title
+  body: Education test body
+  post_category: education
+  creator: one
+
+science:
+  title: Science test title
+  body: Science test body
+  post_category: science
+  creator: one
+
+travel:
+  title: Travel test title
+  body: Travel test body
+  post_category: travel
+  creator: one

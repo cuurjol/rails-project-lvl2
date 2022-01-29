@@ -2,6 +2,7 @@
   "name": "rails-project-lvl2",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@popperjs/core": "^2.11.2",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
