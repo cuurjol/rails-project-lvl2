@@ -1,5 +1,6 @@
 - if flash.any?
   .container.my-2
-    - flash.each do |_type, msg|
-      .alert.alert-info
+    - flash.each do |type, msg|
+      .alert.alert-dismissible.fade.show class="alert-#{type == 'alert' ? 'danger' : 'success'}"
         = msg
+        = button_tag('', type: 'button', class: 'btn-close', data: { 'bs-dismiss' => 'alert' })
