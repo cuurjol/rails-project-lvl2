@@ -1,19 +1,41 @@
-ol.breadcrumb
-  li.breadcrumb-item
-    = link_to('All posts', posts_path)
-  li.breadcrumb-item.active
-    = @post.post_category.name
+.row
+  .col-12
+    ol.breadcrumb
+      li.breadcrumb-item
+        = link_to('All posts', posts_path)
+      li.breadcrumb-item.active
+        = @post.post_category.name
 
-h2 = @post.title
-hr
-p = @post.body
-hr
-.d-flex
-  - if user_signed_in?
-    = link_to('Destroy', post_path(@post), method: :delete, class: 'btn btn-danger me-auto',
-            data: { confirm: 'Are you sure?' })
-  .pt-2
-    span.me-2.ms-auto
-      = "Author: #{@post.creator.email}"
-    span.me-2
-      = "Created_at: #{@post.created_at.to_formatted_s(:long)}"
+    h2.mb-4 = @post.title
+    .d-flex.justify-content-between.mt-4.text-muted
+      span.me-2 = "Author: #{@post.creator.email}"
+      span.me-2 = "Created_at: #{@post.created_at.to_formatted_s(:long)}"
+    hr.mt-2
+
+    p = @post.body
+    hr
+
+    - if user_signed_in?
+      .d-flex.justify-content-between.mb-4.collapse-comment-0.collapse.show
+        = button_tag('Leave comment', class: 'btn btn-primary', type: 'button',
+                data: { 'bs-toggle' => 'collapse', 'bs-target' => '.collapse-comment-0' },
+                aria: { expanded: 'false', controls: 'collapse-comment-0' })
+
+        - if current_user == @post.creator
+          = link_to('Destroy', post_path(@post), method: :delete, class: 'btn btn-danger',
+                  data: { confirm: 'Are you sure?' })
+
+.row.mb-4.collapse.collapse-comment-0
+  .col-6
+    h2.mb-4 = 'Write Comment'
+    = render(partial: 'posts/comments/form', locals: { parent_id: nil })
+
+.row
+  .col-12
+    h2.mb-4 = 'Listing comments'
+    - if @post.comments.count.zero?
+      p = 'No one has commented on the post'
+    - else
+      ol.comment-list.p-0
+        - @post.comments.roots.each do |comment|
+          = render(partial: 'posts/comments/comment', locals: { comment: comment })

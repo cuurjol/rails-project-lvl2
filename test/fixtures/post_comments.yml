@@ -1,0 +1,12 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+root_comment:
+  content: Test root comment
+  post: health
+  user: one
+
+child_comment:
+  content: Test child comment
+  ancestry: root_comment
+  post: health
+  user: one

@@ -1,8 +1,8 @@
 .card.mb-4
   .card-header
-    .d-flex
+    .d-flex.text-muted
       span.card-text.me-auto = "##{post_counter + 1}"
-      span.card-text.text-muted = "Author: #{post.creator.email}"
+      span.card-text = "Author: #{post.creator.email}"
 
   .card-body
     h4.card-text = post.title

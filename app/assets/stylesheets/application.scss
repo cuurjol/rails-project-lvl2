@@ -1,1 +1,19 @@
 @import "bootstrap";
+
+.comment-list, .child-comment-list {
+  list-style-type: none;
+}
+
+.comment-list > li .child-comment-list {
+  margin-left: 10px;
+  padding-left: 30px;
+  border-left: 1px solid #ccc;
+}
+
+.collapse.collapse-comment-0 {
+  display: none !important;
+}
+
+.collapse.collapse-comment-0.show {
+  display: flex !important;
+}

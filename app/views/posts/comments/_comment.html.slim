@@ -1,0 +1,20 @@
+li.mb-4
+  .card.mb-4
+    .card-header.d-flex.text-muted
+      span.card-text.me-auto = "Author: #{comment.user.email}"
+      span.card-text = "Created_at: #{comment.created_at.to_formatted_s(:long)}"
+    .card-body
+      p.card-text = comment.content
+    - if user_signed_in?
+      .card-footer.text-muted
+        = button_tag('Reply', class: "btn btn-primary collapse-comment-#{comment.id} show", type: 'button',
+                data: { 'bs-toggle' => 'collapse', 'bs-target' => ".collapse-comment-#{comment.id}" },
+                aria: { expanded: 'false', controls: "collapse-comment-#{comment.id}" })
+        .collapse class="collapse-comment-#{comment.id}"
+          h5.my-2 = "Reply to #{comment.user.email}"
+          = render(partial: 'posts/comments/form', locals: { parent_id: comment.id })
+
+  - if comment.has_children?
+    ul.child-comment-list
+      - comment.children.each do |child_comment|
+        = render('posts/comments/comment', comment: child_comment)

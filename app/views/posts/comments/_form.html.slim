@@ -1,0 +1,7 @@
+= simple_form_for(PostComment.new, url: post_comments_path(@post)) do |f|
+  = f.input :content, wrapper_html: { class: 'my-2' }
+  = f.hidden_field :parent_id, value: parent_id
+  = f.button :submit, 'Send', class: 'btn-primary my-2'
+  = button_tag('Cancel', type: 'button', class: 'btn btn-secondary my-2 ms-2',
+          data: { 'bs-toggle' => 'collapse', 'bs-target' => ".collapse-comment-#{parent_id || 0}" },
+          aria: { expanded: 'false', controls: "collapse-comment-#{parent_id || 0}" })
