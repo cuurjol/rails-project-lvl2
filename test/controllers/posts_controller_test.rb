@@ -55,29 +55,31 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show post view' do
-    post = posts(:health)
-    get(post_url(post))
+    get(post_url(posts(:health)))
     assert_response(:success)
   end
 
   test 'should show post view for unauthenticated user' do
     sign_out(@user)
-    post = posts(:health)
-    get(post_url(post))
+    get(post_url(posts(:health)))
     assert_response(:success)
   end
 
   test 'should destroy post' do
-    post = posts(:health)
-    assert_difference('Post.count', -1) { delete(post_url(post)) }
+    assert_difference('Post.count', -1) { delete(post_url(posts(:health))) }
     assert_response(:redirect)
-    assert_redirected_to posts_url
+    assert_redirected_to(posts_url)
+  end
+
+  test 'should not destroy a foreign post' do
+    assert_no_difference('Post.count') { delete(post_url(posts(:travel))) }
+    assert_response(:redirect)
+    assert_redirected_to(posts_url)
   end
 
   test 'should not destroy post for unauthenticated user' do
     sign_out(@user)
-    post = posts(:health)
-    assert_no_difference('Post.count') { delete(post_url(post)) }
+    assert_no_difference('Post.count') { delete(post_url(posts(:health))) }
     assert_response(:redirect)
     assert_redirected_to(new_user_session_url)
   end

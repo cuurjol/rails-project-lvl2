@@ -27,8 +27,13 @@ class PostsController < ApplicationController
 
   def destroy
     @post = find_post
-    @post.destroy
-    redirect_to(posts_url, notice: 'Post was successfully destroyed.')
+
+    if @post.creator == current_user
+      @post.destroy
+      redirect_to(posts_url, notice: 'Post was successfully destroyed.')
+    else
+      redirect_to(posts_url, alert: 'You cannot destroy a foreign post.')
+    end
   end
 
   private

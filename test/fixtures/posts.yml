@@ -16,16 +16,16 @@ education:
   title: Education test title
   body: Education test body
   post_category: education
-  creator: one
+  creator: two
 
 science:
   title: Science test title
   body: Science test body
   post_category: science
-  creator: one
+  creator: two
 
 travel:
   title: Travel test title
   body: Travel test body
   post_category: travel
-  creator: one
+  creator: two
