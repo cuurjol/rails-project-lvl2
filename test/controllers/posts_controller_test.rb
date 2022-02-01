@@ -38,6 +38,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count') { post(posts_url, params: post_params) }
 
     post = Post.last
+    assert_response(:redirect)
     assert_redirected_to(post_url(post))
     assert { post.title == post_params[:post][:title] }
     assert { post.body == post_params[:post][:body] }
@@ -56,7 +57,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should show post view' do
     post = posts(:health)
     get(post_url(post))
-    assert_response :success
+    assert_response(:success)
   end
 
   test 'should show post view for unauthenticated user' do

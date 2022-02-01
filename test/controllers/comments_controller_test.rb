@@ -15,8 +15,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     comment_params = { post_comment: { content: 'Test comment content', parent_id: nil } }
     assert_difference('PostComment.count') { post(post_comments_url(@post), params: comment_params) }
 
-    comment = PostComment.last
+    assert_response(:redirect)
     assert_redirected_to(post_url(@post))
+
+    comment = PostComment.last
     assert { comment.content == comment_params[:post_comment][:content] }
     assert { comment.post == @post }
     assert { comment.user == @user }
@@ -37,8 +39,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     comment_params = { post_comment: { content: 'Test child comment content', parent_id: root_comment.id } }
     assert_difference('PostComment.count') { post(post_comments_url(@post), params: comment_params) }
 
-    comment = PostComment.last
+    assert_response(:redirect)
     assert_redirected_to(post_url(@post))
+
+    comment = PostComment.last
     assert { comment.content == comment_params[:post_comment][:content] }
     assert { comment.post == @post }
     assert { comment.user == @user }
