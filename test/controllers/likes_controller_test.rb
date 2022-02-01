@@ -48,11 +48,10 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not destroy like mark for unliked post' do
-    like = @post.likes.create(user: @user)
-    user = User.create(email: 'test@example.com', password: '123456', password_confirmation: '123456')
-
     sign_out(@user)
-    sign_in(user)
+    sign_in(users(:two))
+
+    like = @post.likes.create(user: @user)
     assert_no_difference('PostLike.count', -1) { delete(post_like_url(@post, like)) }
 
     assert_response(:redirect)
