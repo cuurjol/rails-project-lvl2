@@ -15,17 +15,16 @@
     p = @post.body
     hr
 
-    - if user_signed_in?
-      .d-flex.justify-content-between.mb-4.collapse-comment-0.collapse.show
-        = button_tag('Leave comment', class: 'btn btn-primary', type: 'button',
-                data: { 'bs-toggle' => 'collapse', 'bs-target' => '.collapse-comment-0' },
-                aria: { expanded: 'false', controls: 'collapse-comment-0' })
+    .d-flex.justify-content-between.mb-4.collapse-comment-0.collapse.show
+      = button_tag('Leave comment', class: 'btn btn-primary', type: 'button',
+              data: { 'bs-toggle' => 'collapse', 'bs-target' => '.collapse-comment-0' },
+              aria: { expanded: 'false', controls: 'collapse-comment-0' })
 
-        = like_element_tag(@post, current_user)
+      = like_element_tag(@post, current_user)
 
-        - if current_user == @post.creator
-          = link_to('Destroy', post_path(@post), method: :delete, class: 'btn btn-danger',
-                  data: { confirm: 'Are you sure?' })
+      - if current_user == @post.creator
+        = link_to('Destroy', post_path(@post), method: :delete, class: 'btn btn-danger',
+                data: { confirm: 'Are you sure?' })
 
 .row.mb-4.collapse.collapse-comment-0
   .col-6
@@ -35,7 +34,7 @@
 .row
   .col-12
     h2.mb-4 = 'Listing comments'
-    - if @post.comments.count.zero?
+    - if @post.comments_count.zero?
       p = 'No one has commented on the post'
     - else
       ol.comment-list.p-0

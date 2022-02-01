@@ -2,7 +2,7 @@
   .card-header
     .d-flex.text-muted
       span.card-text.me-auto = "##{post_counter + 1}"
-      span.card-text = "Author: #{post.creator.email}"
+      span.card-text = "#{post.creator.email} / #{post.created_at.to_formatted_s(:long)}"
 
   .card-body
     h4.card-text = post.title
@@ -10,12 +10,6 @@
 
   .card-footer.text-muted
     .d-flex
-      - if user_signed_in?
-        = link_to('Show', post_path(post), class: 'card-link btn btn-success')
-        = link_to('Destroy', post_path(post), method: :delete, class: 'card-link  btn btn-danger me-auto',
-                data: { confirm: 'Are you sure?' })
-      - else
-        = link_to('Show', post_path(post), class: 'card-link btn btn-success me-auto')
-
+      = link_to('Show', post_path(post), class: 'card-link btn btn-success me-auto')
       .pt-2
-        p.card-text = "Created_at: #{post.created_at.to_formatted_s(:long)}"
+        p.card-text = "#{post.likes_count} Likes / #{post.comments_count} Comments"
