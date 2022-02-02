@@ -1,6 +1,6 @@
-h2.mb-4 = 'Listing posts'
+h2.mb-4 = t('.title_view')
 
 - if @posts.count.zero?
-  p = 'There are no posts'
+  p = t('.no_records')
 - else
   = render(@posts)

@@ -3,4 +3,4 @@
   = f.input :body, wrapper_html: { class: 'my-2' }
   = f.association :post_category, wrapper_html: { class: 'my-2' }
   = f.button :submit, class: 'btn-primary my-2'
-  = link_to('Cancel', posts_path, class: 'btn btn-secondary my-2 ms-2')
+  = link_to(t('.cancel_link'), posts_path, class: 'btn btn-secondary my-2 ms-2')

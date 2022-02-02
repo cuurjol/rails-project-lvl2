@@ -1,4 +1,4 @@
-h2.mb-4 = 'Log in'
+h2.mb-4 = t('.sign_in')
 .row
   .col-5
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
@@ -9,5 +9,5 @@ h2.mb-4 = 'Log in'
                 input_html: { autocomplete: 'current-password' })
         = f.input(:remember_me, wrapper_html: { class: 'my-2' }, as: :boolean) if devise_mapping.rememberable?
       .form-actions
-        = f.button(:submit, 'Log in', class: 'btn-primary my-2')
+        = f.button(:submit, t('.sign_in'), class: 'btn-primary my-2')
     = render 'devise/shared/links'

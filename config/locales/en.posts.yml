@@ -1,0 +1,42 @@
+---
+en:
+  posts:
+    index:
+      title_view: Listing posts
+      no_records: There are no records
+    new:
+      title_view: New post
+    create:
+      success: Post was successfully created.
+    show:
+      all_posts_link: All posts
+      leave_comment_button: Leave comment
+      destroy_button: Destroy
+      write_comment_title: Write Comment
+      listing_comments_title: Listing comments
+      no_records: No one has commented on the post
+      destroy_confirmation: Are you sure?
+      author_title: 'Author: %{author}'
+      created_at_title: 'Created_at: %{created_at}'
+    destroy:
+      success: Post was successfully destroyed.
+      failure: You cannot destroy a foreign post.
+    post:
+      show_link: Show
+      likes:
+        one: '%{count} Like'
+        other: '%{count} Likes'
+      comments:
+        one: '%{count} Comment'
+        other: '%{count} Comments'
+    form:
+      cancel_link: Cancel
+    comments:
+      comment:
+        author_title: 'Author: %{author}'
+        created_at_title: 'Created_at: %{created_at}'
+        reply_button: Reply
+        reply_title: 'Reply to %{author}'
+      form:
+        submit: Send
+        cancel_link: Cancel

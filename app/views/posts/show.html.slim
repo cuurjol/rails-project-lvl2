@@ -2,40 +2,40 @@
   .col-12
     ol.breadcrumb
       li.breadcrumb-item
-        = link_to('All posts', posts_path)
+        = link_to(t('.all_posts_link'), posts_path)
       li.breadcrumb-item.active
         = @post.post_category.name
 
     h2.mb-4 = @post.title
     .d-flex.justify-content-between.mt-4.text-muted
-      span.me-2 = "Author: #{@post.creator.email}"
-      span.me-2 = "Created_at: #{@post.created_at.to_formatted_s(:long)}"
+      span.me-2 = t('.author_title', author: @post.creator.email)
+      span.me-2 = t('.created_at_title', created_at: l(@post.created_at, format: :long))
     hr.mt-2
 
     p = @post.body
     hr
 
     .d-flex.justify-content-between.mb-4.collapse-comment-0.collapse.show
-      = button_tag('Leave comment', class: 'btn btn-primary', type: 'button',
+      = button_tag(t('.leave_comment_button'), class: 'btn btn-primary', type: 'button',
               data: { 'bs-toggle' => 'collapse', 'bs-target' => '.collapse-comment-0' },
               aria: { expanded: 'false', controls: 'collapse-comment-0' })
 
       = like_element_tag(@post, current_user)
 
       - if current_user == @post.creator
-        = link_to('Destroy', post_path(@post), method: :delete, class: 'btn btn-danger',
-                data: { confirm: 'Are you sure?' })
+        = link_to(t('.destroy_button'), post_path(@post), method: :delete, class: 'btn btn-danger',
+                data: { confirm: t('.destroy_confirmation') })
 
 .row.mb-4.collapse.collapse-comment-0
   .col-6
-    h2.mb-4 = 'Write Comment'
+    h2.mb-4 = t('.write_comment_title')
     = render(partial: 'posts/comments/form', locals: { parent_id: nil })
 
 .row
   .col-12
-    h2.mb-4 = 'Listing comments'
+    h2.mb-4 = t('.listing_comments_title')
     - if @post.comments_count.zero?
-      p = 'No one has commented on the post'
+      p = t('.no_records')
     - else
       ol.comment-list.p-0
         - @post.comments.roots.each do |comment|

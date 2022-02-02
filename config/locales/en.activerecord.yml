@@ -1,0 +1,17 @@
+---
+en:
+  activerecord:
+    models:
+      post: Post
+      post_category: Category
+      post_comment: Comment
+
+    attributes:
+      post:
+        title: Title
+        body: Body
+        post_category: Category
+      post_category:
+        name: Name
+      post_comment:
+        content: Content

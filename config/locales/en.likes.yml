@@ -1,0 +1,9 @@
+---
+en:
+  likes:
+    create:
+      success: Like was successfully created.
+      failure: You cannot create a like mark more than once.
+    destroy:
+      success: Like was successfully destroyed.
+      failure: You cannot remove a like mark for a post that doesn't have your mark.

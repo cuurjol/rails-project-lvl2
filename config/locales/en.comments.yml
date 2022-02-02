@@ -1,0 +1,6 @@
+---
+en:
+  comments:
+    create:
+      success: Comment was successfully created.
+      failure: Comment cannot be empty.

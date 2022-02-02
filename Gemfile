@@ -19,6 +19,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'ancestry'
 gem 'devise'
+gem 'devise-i18n'
+gem 'rails-i18n'
 gem 'rollbar'
 gem 'rubocop', '~> 1.23', require: false
 gem 'rubocop-rails', require: false

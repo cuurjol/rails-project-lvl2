@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to(@post, notice: 'Post was successfully created.')
+      redirect_to(@post, notice: t('.success'))
     else
       render(:new)
     end
@@ -30,9 +30,9 @@ class PostsController < ApplicationController
 
     if @post.creator == current_user
       @post.destroy
-      redirect_to(posts_url, notice: 'Post was successfully destroyed.')
+      redirect_to(posts_url, notice: t('.success'))
     else
-      redirect_to(posts_url, alert: 'You cannot destroy a foreign post.')
+      redirect_to(posts_url, alert: t('.failure'))
     end
   end
 

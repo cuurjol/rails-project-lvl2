@@ -1,0 +1,12 @@
+---
+ru:
+  layouts:
+    application:
+      app_name: Коллективный блог
+    shared:
+      nav:
+        brand: Коллективный блог
+        create_post: Создать пост
+        sign_out: Выход
+        log_in: Войти
+        sign_up: Регистрация

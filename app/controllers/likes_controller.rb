@@ -5,18 +5,18 @@ class LikesController < ApplicationController
 
   def create
     if post.likes.create(user: current_user)
-      redirect_to(post, notice: 'Like was successfully created.')
+      redirect_to(post, notice: t('.success'))
     else
-      redirect_to(post, alert: 'You cannot create a like mark more than once.')
+      redirect_to(post, alert: t('.failure'))
     end
   end
 
   def destroy
     if already_liked?
       post.likes.find(params[:id]).destroy
-      redirect_to(post, notice: 'Like was successfully destroyed.')
+      redirect_to(post, notice: t('.success'))
     else
-      redirect_to(post, alert: 'You cannot remove a like mark for unliked post.')
+      redirect_to(post, alert: t('.failure'))
     end
   end
 

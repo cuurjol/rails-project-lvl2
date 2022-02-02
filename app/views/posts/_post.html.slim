@@ -2,7 +2,7 @@
   .card-header
     .d-flex.text-muted
       span.card-text.me-auto = "##{post_counter + 1}"
-      span.card-text = "#{post.creator.email} / #{post.created_at.to_formatted_s(:long)}"
+      span.card-text = "#{post.creator.email} / #{l(post.created_at, format: :long)}"
 
   .card-body
     h4.card-text = post.title
@@ -10,6 +10,6 @@
 
   .card-footer.text-muted
     .d-flex
-      = link_to('Show', post_path(post), class: 'card-link btn btn-success me-auto')
+      = link_to(t('.show_link'), post_path(post), class: 'card-link btn btn-success me-auto')
       .pt-2
-        p.card-text = "#{post.likes_count} Likes / #{post.comments_count} Comments"
+        p.card-text = "#{t('.likes', count: post.likes_count)} / #{t('.comments', count: post.comments_count)}"
