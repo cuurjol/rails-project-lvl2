@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_01_143757) do
+ActiveRecord::Schema.define(version: 2022_02_08_205435) do
 
   create_table "post_categories", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_02_01_143757) do
     t.integer "comments_count", default: 0
     t.index ["creator_id"], name: "index_posts_on_creator_id"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
+    t.check_constraint "length(title) <= 120", name: "title_check"
   end
 
   create_table "users", force: :cascade do |t|
