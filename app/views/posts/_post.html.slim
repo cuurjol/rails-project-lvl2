@@ -5,8 +5,9 @@
       span.card-text = "#{post.creator.email} / #{l(post.created_at, format: :long)}"
 
   .card-body
-    h4.card-text = post.title
-    p.card-text = reduce_text(post.body)
+    h4.card-text
+      strong = post.title
+    .card-text == markdown(reduce_text(post.body))
 
   .card-footer.text-muted
     .d-flex

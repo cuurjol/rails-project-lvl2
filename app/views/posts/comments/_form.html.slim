@@ -1,5 +1,5 @@
 = simple_form_for(PostComment.new, url: post_comments_path(@post)) do |f|
-  = f.input :content, wrapper_html: { class: 'my-2' }
+  = f.input :content, wrapper_html: { class: 'my-2' }, hint: t('.markdown_support')
   = f.hidden_field :parent_id, value: parent_id
   = f.button :submit, t('.submit'), class: 'btn-primary my-2'
   = button_tag(t('.cancel_link'), type: 'button', class: 'btn btn-secondary my-2 ms-2',

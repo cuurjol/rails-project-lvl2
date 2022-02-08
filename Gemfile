@@ -22,6 +22,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'pagy', '~> 5.10'
 gem 'rails-i18n'
+gem 'redcarpet'
 gem 'rollbar'
 gem 'rubocop', '~> 1.23', require: false
 gem 'rubocop-rails', require: false

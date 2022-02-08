@@ -6,13 +6,14 @@
       li.breadcrumb-item.active
         = @post.post_category.name
 
-    h2.mb-4 = @post.title
+    h2.mb-4
+      strong = @post.title
     .d-flex.justify-content-between.mt-4.text-muted
       span.me-2 = t('.author_title', author: @post.creator.email)
       span.me-2 = t('.created_at_title', created_at: l(@post.created_at, format: :long))
     hr.mt-2
 
-    p = @post.body
+    == markdown(@post.body)
     hr
 
     .d-flex.justify-content-between.mb-4.collapse-comment-0.collapse.show

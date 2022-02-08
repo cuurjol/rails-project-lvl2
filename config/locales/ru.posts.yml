@@ -33,6 +33,7 @@ ru:
         many: '%{count} Комментариев'
     form:
       cancel_link: Отмена
+      markdown_support: Есть поддержка текста Markdown
     comments:
       comment:
         author_title: 'Автор: %{author}'
@@ -42,3 +43,4 @@ ru:
       form:
         submit: Отправить
         cancel_link: Отмена
+        markdown_support: Есть поддержка текста Markdown
