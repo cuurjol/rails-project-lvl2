@@ -17,7 +17,7 @@ ru:
       no_records: Никто не прокомментировал пост
       destroy_confirmation: Вы уверены?
       author_title: 'Автор: %{author}'
-      created_at_title: 'Дато создания: %{created_at}'
+      created_at_title: 'Дата создания: %{created_at}'
     destroy:
       success: Пост был успешно удалён.
       failure: Вы не можете удалить чужой пост.
@@ -36,7 +36,7 @@ ru:
     comments:
       comment:
         author_title: 'Автор: %{author}'
-        created_at_title: 'Дато создания: %{created_at}'
+        created_at_title: 'Дата создания: %{created_at}'
         reply_button: Ответить
         reply_title: 'Ответить на %{author}'
       form:

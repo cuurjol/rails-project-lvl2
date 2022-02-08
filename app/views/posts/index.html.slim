@@ -4,3 +4,4 @@ h2.mb-4 = t('.title_view')
   p = t('.no_records')
 - else
   = render(@posts)
+  = raw(pagy_bootstrap_nav(@pagy))

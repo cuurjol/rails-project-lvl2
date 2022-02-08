@@ -14,7 +14,7 @@ li.mb-4
           h5.my-2 = t('.reply_title', author: comment.user.email)
           = render(partial: 'posts/comments/form', locals: { parent_id: comment.id })
 
-  - if comment.has_children?
+  - if children.present?
     ul.child-comment-list
-      - comment.children.each do |child_comment|
-        = render('posts/comments/comment', comment: child_comment)
+      - children.each do |child_comment, descendants|
+        = render('posts/comments/comment', comment: child_comment, children: descendants)

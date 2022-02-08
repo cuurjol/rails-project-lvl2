@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
 
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.includes(:creator))
   end
 
   def new
@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @post = find_post
+    @comments = @post.comments.includes(:user).arrange
   end
 
   def destroy
@@ -43,6 +44,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_category_id, :creator_id)
+    params.require(:post).permit(:title, :body, :post_category_id)
   end
 end

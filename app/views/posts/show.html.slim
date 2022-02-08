@@ -16,9 +16,12 @@
     hr
 
     .d-flex.justify-content-between.mb-4.collapse-comment-0.collapse.show
-      = button_tag(t('.leave_comment_button'), class: 'btn btn-primary', type: 'button',
-              data: { 'bs-toggle' => 'collapse', 'bs-target' => '.collapse-comment-0' },
-              aria: { expanded: 'false', controls: 'collapse-comment-0' })
+      - if user_signed_in?
+        = button_tag(t('.leave_comment_button'), class: 'btn btn-primary', type: 'button',
+                data: { 'bs-toggle' => 'collapse', 'bs-target' => '.collapse-comment-0' },
+                aria: { expanded: 'false', controls: 'collapse-comment-0' })
+      - else
+        = button_to(t('.leave_comment_button'), new_user_registration_path, method: :get, class: 'btn btn-primary')
 
       = like_element_tag(@post, current_user)
 
@@ -26,10 +29,11 @@
         = link_to(t('.destroy_button'), post_path(@post), method: :delete, class: 'btn btn-danger',
                 data: { confirm: t('.destroy_confirmation') })
 
-.row.mb-4.collapse.collapse-comment-0
-  .col-6
-    h2.mb-4 = t('.write_comment_title')
-    = render(partial: 'posts/comments/form', locals: { parent_id: nil })
+- if user_signed_in?
+  .row.mb-4.collapse.collapse-comment-0
+    .col-6
+      h2.mb-4 = t('.write_comment_title')
+      = render(partial: 'posts/comments/form', locals: { parent_id: nil })
 
 .row
   .col-12
@@ -38,5 +42,5 @@
       p = t('.no_records')
     - else
       ol.comment-list.p-0
-        - @post.comments.roots.each do |comment|
-          = render(partial: 'posts/comments/comment', locals: { comment: comment })
+        - @comments.each do |comment, children|
+          = render(partial: 'posts/comments/comment', locals: { comment: comment, children: children })

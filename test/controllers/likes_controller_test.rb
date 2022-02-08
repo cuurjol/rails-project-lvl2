@@ -16,10 +16,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response(:redirect)
     assert_redirected_to(post_url(@post))
-
-    like = PostLike.last
-    assert { like.post == @post }
-    assert { like.user == @user }
+    assert { PostLike.exists?(post: @post, user: @user) }
   end
 
   test 'should not create like more than twice' do
@@ -28,6 +25,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response(:redirect)
     assert_redirected_to(post_url(@post))
+    assert { @post.likes_count == 1 }
   end
 
   test 'should not create like for unauthenticated user' do
@@ -36,6 +34,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response(:redirect)
     assert_redirected_to(new_user_session_url)
+    assert { @post.likes_count.zero? }
   end
 
   test 'should destroy like' do
@@ -60,8 +59,9 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not destroy like for unauthenticated user' do
-    like = @post.likes.create(user: @user)
     sign_out(@user)
+
+    like = @post.likes.create(user: @user)
     assert_no_difference('PostLike.count', -1) { delete(post_like_url(@post, like)) }
 
     assert_response(:redirect)

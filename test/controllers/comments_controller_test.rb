@@ -12,50 +12,46 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create comment' do
-    comment_params = { post_comment: { content: 'Test comment content', parent_id: nil } }
-    assert_difference('PostComment.count') { post(post_comments_url(@post), params: comment_params) }
+    params = { post_comment: { content: Faker::Lorem.paragraph, parent_id: nil } }
+    assert_difference('PostComment.count') { post(post_comments_url(@post), params: params) }
 
+    needed_attributes = { content: params[:post_comment][:content], post: @post, user: @user, ancestry: nil }
     assert_response(:redirect)
     assert_redirected_to(post_url(@post))
-
-    comment = PostComment.last
-    assert { comment.content == comment_params[:post_comment][:content] }
-    assert { comment.post == @post }
-    assert { comment.user == @user }
-    assert { comment.parent_id.nil? }
+    assert { PostComment.exists?(needed_attributes) }
   end
 
   test 'should not create comment for unauthenticated user' do
     sign_out(@user)
-    comment_params = { post_comment: { content: 'Test comment content', parent_id: nil } }
-    assert_no_difference('PostComment.count') { post(post_comments_url(@post), params: comment_params) }
+    params = { post_comment: { content: Faker::Lorem.paragraph, parent_id: nil } }
+    assert_no_difference('PostComment.count') { post(post_comments_url(@post), params: params) }
 
+    needed_attributes = { content: params[:post_comment][:content], post: @post, user: @user, ancestry: nil }
     assert_response(:redirect)
     assert_redirected_to(new_user_session_url)
+    assert { !PostComment.exists?(needed_attributes) }
   end
 
   test 'should create child comment for existing comment' do
     root_comment = post_comments(:root_comment)
-    comment_params = { post_comment: { content: 'Test child comment content', parent_id: root_comment.id } }
-    assert_difference('PostComment.count') { post(post_comments_url(@post), params: comment_params) }
+    params = { post_comment: { content: Faker::Lorem.paragraph, parent_id: root_comment.id } }
+    assert_difference('PostComment.count') { post(post_comments_url(@post), params: params) }
 
+    needed_attributes = { content: params[:post_comment][:content], post: @post, user: @user, ancestry: root_comment }
     assert_response(:redirect)
     assert_redirected_to(post_url(@post))
-
-    comment = PostComment.last
-    assert { comment.content == comment_params[:post_comment][:content] }
-    assert { comment.post == @post }
-    assert { comment.user == @user }
-    assert { comment.parent_id == root_comment.id }
+    assert { PostComment.exists?(needed_attributes) }
   end
 
   test 'should not create child comment for unauthenticated user' do
     sign_out(@user)
     root_comment = post_comments(:root_comment)
-    comment_params = { post_comment: { content: 'Test child comment content', parent_id: root_comment.id } }
-    assert_no_difference('PostComment.count') { post(post_comments_url(@post), params: comment_params) }
+    params = { post_comment: { content: Faker::Lorem.paragraph, parent_id: root_comment.id } }
+    assert_no_difference('PostComment.count') { post(post_comments_url(@post), params: params) }
 
+    needed_attributes = { content: params[:post_comment][:content], post: @post, user: @user, ancestry: root_comment }
     assert_response(:redirect)
     assert_redirected_to(new_user_session_url)
+    assert { !PostComment.exists?(needed_attributes) }
   end
 end
