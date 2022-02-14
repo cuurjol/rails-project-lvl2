@@ -23,9 +23,13 @@ bundle install
 
 * Create a database, run database migrations and a `seeds.rb` file to create database records:
 ```
-bundle exec rake db:create
-bundle exec rake db:migrate
-bundle exec rake db:seed
+# Make command:
+make db-setup
+
+# Run each command separately:
+bundle exec rails db:create
+bundle exec rails db:migrate
+bundle exec rails db:seed
 ```
 
 The application uses the `SQLite` database for development/test environment and the `Postgresql` database for 
